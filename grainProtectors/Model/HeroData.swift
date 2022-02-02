@@ -41,12 +41,6 @@ struct Biography : Codable  {
         case publisher
         case alignment
     }
-//    enum CodingKeys: String, CodingKey{
-//        case fullName = "full-name"
-//    }
-//    init(from decoder: Decoder) throws {
-//        <#code#>
-//    }
 }
 
 struct Appearance : Codable {

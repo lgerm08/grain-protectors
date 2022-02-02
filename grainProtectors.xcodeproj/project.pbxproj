@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		43678B0027A306250038AD87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43678AFF27A306250038AD87 /* AppDelegate.swift */; };
 		43678B0227A306250038AD87 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43678B0127A306250038AD87 /* SceneDelegate.swift */; };
-		43678B0427A306250038AD87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43678B0327A306250038AD87 /* ViewController.swift */; };
 		43678B0727A306250038AD87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43678B0527A306250038AD87 /* Main.storyboard */; };
 		43678B0A27A306250038AD87 /* grainProtectors.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43678B0827A306250038AD87 /* grainProtectors.xcdatamodeld */; };
 		43678B0C27A306280038AD87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43678B0B27A306280038AD87 /* Assets.xcassets */; };
@@ -25,13 +24,15 @@
 		43678B2C27A48B3C0038AD87 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43678B2B27A48B3C0038AD87 /* DetailsViewController.swift */; };
 		43678B2F27A48EC60038AD87 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43678B2D27A48EC60038AD87 /* DetailsCollectionViewCell.swift */; };
 		43678B3027A48EC60038AD87 /* DetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43678B2E27A48EC60038AD87 /* DetailsCollectionViewCell.xib */; };
+		43678B3527A99E350038AD87 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 43678B3427A99E350038AD87 /* SDWebImage */; };
+		43678B3727A9AE040038AD87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43678B3627A9AE040038AD87 /* Constants.swift */; };
+		43678B3A27AACA190038AD87 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43678B3927AACA190038AD87 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		43678AFC27A306250038AD87 /* grainProtectors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grainProtectors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43678AFF27A306250038AD87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43678B0127A306250038AD87 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		43678B0327A306250038AD87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43678B0627A306250038AD87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43678B0927A306250038AD87 /* grainProtectors.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = grainProtectors.xcdatamodel; sourceTree = "<group>"; };
 		43678B0B27A306280038AD87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		43678B2B27A48B3C0038AD87 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		43678B2D27A48EC60038AD87 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		43678B2E27A48EC60038AD87 /* DetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsCollectionViewCell.xib; sourceTree = "<group>"; };
+		43678B3627A9AE040038AD87 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43678B3527A99E350038AD87 /* SDWebImage in Frameworks */,
+				43678B3A27AACA190038AD87 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +92,7 @@
 				43678B0B27A306280038AD87 /* Assets.xcassets */,
 				43678B0D27A306280038AD87 /* LaunchScreen.storyboard */,
 				43678B1027A306280038AD87 /* Info.plist */,
+				43678B3627A9AE040038AD87 /* Constants.swift */,
 				43678B0827A306250038AD87 /* grainProtectors.xcdatamodeld */,
 			);
 			path = grainProtectors;
@@ -108,7 +113,6 @@
 		43678B1727A3090C0038AD87 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				43678B0327A306250038AD87 /* ViewController.swift */,
 				43678B1F27A311660038AD87 /* HeroViewController.swift */,
 				43678B2B27A48B3C0038AD87 /* DetailsViewController.swift */,
 			);
@@ -143,6 +147,10 @@
 			dependencies = (
 			);
 			name = grainProtectors;
+			packageProductDependencies = (
+				43678B3427A99E350038AD87 /* SDWebImage */,
+				43678B3927AACA190038AD87 /* IQKeyboardManagerSwift */,
+			);
 			productName = grainProtectors;
 			productReference = 43678AFC27A306250038AD87 /* grainProtectors.app */;
 			productType = "com.apple.product-type.application";
@@ -171,6 +179,10 @@
 				Base,
 			);
 			mainGroup = 43678AF327A306250038AD87;
+			packageReferences = (
+				43678B3327A99E350038AD87 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				43678B3827AACA190038AD87 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 43678AFD27A306250038AD87 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -201,13 +213,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				43678B2027A311660038AD87 /* HeroViewController.swift in Sources */,
-				43678B0427A306250038AD87 /* ViewController.swift in Sources */,
 				43678B1C27A30CFD0038AD87 /* HeroManager.swift in Sources */,
 				43678B1927A30AB10038AD87 /* HeroData.swift in Sources */,
 				43678B0027A306250038AD87 /* AppDelegate.swift in Sources */,
 				43678B1E27A310000038AD87 /* HeroModel.swift in Sources */,
 				43678B0A27A306250038AD87 /* grainProtectors.xcdatamodeld in Sources */,
 				43678B2427A34ED80038AD87 /* HeroSearchManager.swift in Sources */,
+				43678B3727A9AE040038AD87 /* Constants.swift in Sources */,
 				43678B2727A41BDA0038AD87 /* HeroCell.swift in Sources */,
 				43678B2F27A48EC60038AD87 /* DetailsCollectionViewCell.swift in Sources */,
 				43678B0227A306250038AD87 /* SceneDelegate.swift in Sources */,
@@ -289,7 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -344,7 +356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -364,6 +376,7 @@
 				DEVELOPMENT_TEAM = RDU8Y7X799;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = grainProtectors/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Avengers Grain";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -392,6 +405,7 @@
 				DEVELOPMENT_TEAM = RDU8Y7X799;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = grainProtectors/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Avengers Grain";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -432,6 +446,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		43678B3327A99E350038AD87 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		43678B3827AACA190038AD87 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		43678B3427A99E350038AD87 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43678B3327A99E350038AD87 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		43678B3927AACA190038AD87 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43678B3827AACA190038AD87 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		43678B0827A306250038AD87 /* grainProtectors.xcdatamodeld */ = {

@@ -18,7 +18,6 @@ struct HeroManager {
     
     func fetchHeroById(heroId: String){
         let urlString = "\(heroIdURL)/\(heroId)"
-        //print(urlString)
         performRequest(with: urlString)
     }
 
@@ -53,13 +52,10 @@ struct HeroManager {
     
     func parseJSON(_ heroData: Data) -> HeroModel?{
         let decoder = JSONDecoder()
-        print("parseJSON called")
         do{
             let decodedData = try decoder.decode(HeroData.self, from:  heroData)
             let powerStats = PowerStats(intelligence: decodedData.powerstats.intelligence, strength: decodedData.powerstats.strength, speed: decodedData.powerstats.speed, durability: decodedData.powerstats.durability, power: decodedData.powerstats.power, combat: decodedData.powerstats.combat)
             let hero = HeroModel(name: decodedData.name, id: nil, image: decodedData.image.url, alignment: decodedData.biography.alignment, publisher: decodedData.biography.publisher, city: decodedData.biography.city, powerStats: powerStats)
-//
-            print(hero.name)
             
             return hero
             

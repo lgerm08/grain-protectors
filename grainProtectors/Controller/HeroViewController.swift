@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HeroViewController: UIViewController {
     
@@ -27,36 +28,29 @@ class HeroViewController: UIViewController {
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         resultsTableView.register(UINib(nibName: "HeroCell", bundle: nil), forCellReuseIdentifier: "HeroCell")
-        //searchBar.delegate = self
+        searchBar.delegate = self
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+//        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         let randomId = Int.random(in: 1...100)
         heroManager.fetchHeroById(heroId: String(randomId))
-        //heroSearchManager.findHero(searchBar.text!.lowercased())
-        
     }
     
     
 }
 
 
-//MARK: - HeroManagerDelegate
+//MARK: - Random Search with HeroManagerDelegate
 
 extension HeroViewController : HeroManagerDelegate {
     func didUpdateButton(_ HeroManager: HeroManager, hero: HeroModel) {
         DispatchQueue.main.async {
-//            self.selectedHeroName = hero.name
-//            self.selectedHeroCity = hero.city ?? "empty"
-//            self.selectedHeroAlignemt = hero.alignment
-//            self.selectedHeroCompany = hero.publisher
-//            self.selectedHeroUrlImage = hero.image
-//            self.selectedHeroIntelligence = hero.powerStats!.intelligence
-//            self.selectedHeroStrength = hero.powerStats?.strength ?? nil
-//            self.selectedHeroSpeed = hero.powerStats?.speed ?? nil
-//            self.selectedHeroDurability = hero.powerStats?.durability ?? nil
-//            self.selectedHeroPower = hero.powerStats?.power ?? nil
-//            self.selectedHeroCombat = hero.powerStats?.combat ?? nil
             let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 if let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController{
                     viewController.hero = hero
@@ -70,27 +64,30 @@ extension HeroViewController : HeroManagerDelegate {
     }
 }
 
-//MARK: - HeroSearchDelegate
+//MARK: - Custom Search with HeroSearchDelegate
 
 extension HeroViewController : HeroSearchDelegate {
     func didUpdateSearch(_ HeroManager: HeroSearchManager, heros: HeroSearchDataModel) {
-        
         DispatchQueue.main.async {
             self.herosResultsList = []
             for hero in heros.results{
-                let newHero = HeroModel(name: hero.name, id: hero.id, image: hero.image.url, alignment: hero.biography.alignment, publisher: hero.biography.publisher, city: hero.biography.city, powerStats: PowerStats(intelligence: hero.powerstats.intelligence, strength: hero.powerstats.strength, speed: hero.powerstats.speed, durability: hero.powerstats.durability, power: hero.powerstats.power, combat: hero.powerstats.combat))
+                var placeOfBirth = "Unknown"
+                if hero.biography.city != "-"{
+                    placeOfBirth = hero.biography.city
+                }
+                let newHero = HeroModel(name: hero.name, id: hero.id, image: hero.image.url, alignment: hero.biography.alignment, publisher: hero.biography.publisher, city: placeOfBirth, powerStats: PowerStats(intelligence: hero.powerstats.intelligence, strength: hero.powerstats.strength, speed: hero.powerstats.speed, durability: hero.powerstats.durability, power: hero.powerstats.power, combat: hero.powerstats.combat))
                 //print(newHero.id!)
                 self.herosResultsList.append(newHero)
             }
             self.herosResultsList = self.herosResultsList.sorted{
-                $0.city! < $1.city!
+                $0.city < $1.city
             }
             self.resultsTableView.reloadData()
         }
     }
     func didFailWithError(error: Error) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "No matches were found", message: "The hero you are looking for is not a grain protector", preferredStyle: .alert)
+            let alert = UIAlertController(title: "No matches were found", message: "The hero you are looking for is not an Avenger Grain", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) { Action in
                 alert.dismiss(animated: true, completion: nil)
             }
@@ -98,38 +95,34 @@ extension HeroViewController : HeroSearchDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
 }
 
 
 //MARK: - Search Bar Methods
 extension HeroViewController: UISearchBarDelegate{
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-       // print("text did begin editing")
-        
-    }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       // print("search pressed")
-        if searchBar.text?.count != 0{
-            heroSearchManager.findHero(searchBar.text!.lowercased())
-            resultsTableView.reloadData()
-        }
-        //print("if statement failed")
-        
-        
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //print("change detected")
         if searchBar.text?.count == 0 {
             //loadItems()
             herosResultsList = []
+            searchBar.resignFirstResponder()
             resultsTableView.reloadData()
 
         }else if searchBar.text!.count >= 3{
             heroSearchManager.findHero(searchBar.text!.lowercased())
         }
-        
-        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //print("change detected")
+        if searchBar.text?.count == 0 {
+            //loadItems()
+            herosResultsList = []
+            searchBar.resignFirstResponder()
+            resultsTableView.reloadData()
+
+        }else if searchBar.text!.count >= 3{
+            heroSearchManager.findHero(searchBar.text!.lowercased())
+        }
     }
 }
 
@@ -146,27 +139,13 @@ extension HeroViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeroCell", for: indexPath) as! HeroCell
-        //let url = URL(string: "https://www.superherodb.com/pictures2/portraits/10/100/638.jpg")
-        let imageUrl = URL(string: herosResultsList[indexPath.row].image)
-         
-      //  DispatchQueue.global().async { [weak self] in
-        DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: imageUrl!) {
-                        if let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                cell.heroImageView.image = image
-                            }
-                        }
-                    }
-                }
-        
+        cell.heroImageView.sd_setImage(with: URL(string: herosResultsList[indexPath.row].image), placeholderImage: UIImage(named: herosResultsList[indexPath.row].name))
         cell.fullNameLabel.text = "Name: " + herosResultsList[indexPath.row].name
-        cell.cityLabel.text = "From: " + herosResultsList[indexPath.row].city!
+        cell.cityLabel.text = "From: " + herosResultsList[indexPath.row].city
         cell.companyLabel.text = "Company: " + herosResultsList[indexPath.row].publisher
         //cell.textLabel?.text = herosResultsList[indexPath.row].name
         
         return cell
-        
     }
 }
 
@@ -174,7 +153,6 @@ extension HeroViewController: UITableViewDataSource {
 
 extension HeroViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "goToHero", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             if let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController{
@@ -182,26 +160,6 @@ extension HeroViewController: UITableViewDelegate{
                 self.present(viewController, animated: true, completion: nil)
             }
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print("segue prepared")
-//        if segue.identifier == "goToHero"{
-//            let destinationVC = segue.destination as! DetailsViewController
-//            destinationVC.name = selectedHeroName
-//            destinationVC.city = selectedHeroCity
-//            destinationVC.alignment = selectedHeroAlignemt
-//            destinationVC.company = selectedHeroCompany
-//            destinationVC.urlImage = selectedHeroUrlImage
-//            destinationVC.intelligence = selectedHeroIntelligence
-//            destinationVC.strength = selectedHeroStrength
-//            destinationVC.speed = selectedHeroSpeed
-//            destinationVC.durability = selectedHeroDurability
-//            destinationVC.power = selectedHeroPower
-//            destinationVC.combat = selectedHeroCombat
-//            print(selectedHeroName)
-//        }
-//    }
-    
-    
 }
 
 

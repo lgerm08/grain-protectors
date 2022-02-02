@@ -49,17 +49,8 @@ struct HeroSearchManager {
         let decoder = JSONDecoder()
         do{
             let decodedData = try decoder.decode(HeroSearchDataModel.self, from:  heroList)
-            //print(decodedData.results[2].name)
-            let searchResults = decodedData
-            //let alignment = decodedData.biography.alignment
             
-            //let hero = HeroModel(name: name, alignment: alignment)
-            //let heroList = HeroModel(name: name)
-            
-            //print(searchResults.results[3].name)
-            //print(hero.alignment)
-            
-            return searchResults
+            return decodedData
             
                   
         } catch{

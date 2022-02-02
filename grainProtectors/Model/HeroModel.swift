@@ -15,6 +15,6 @@ struct HeroModel {
     let image : String
     let alignment : String
     let publisher: String
-    let city: String?
+    let city: String
     let powerStats: PowerStats?
 }

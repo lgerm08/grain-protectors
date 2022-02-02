@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailsViewController: UIViewController {
 
@@ -20,17 +21,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var titlePowerStatsLabel: UILabel!
     
     var hero: HeroModel?
-    var urlImage: String = ""
-    var name: String = ""
-    var city: String = ""
-    var alignment: String = ""
-    var company: String = ""
-    var intelligence: String? = ""
-    var strength: String? = ""
-    var speed: String? = ""
-    var durability: String? = ""
-    var power: String? = ""
-    var combat: String? = ""
     var powerStats: [String] = []
     var powerStatsLabel = ["Intelligence: ", "Strength: ", "Speed: ", "Durability: ", "Power: ", "Combat: "]
     var herosResultsList: [HeroModel] = []
@@ -39,10 +29,14 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //Collection View Preparation
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "DetailsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "powerStatsCell")
-        nameLabel.text = "Name: " + hero!.name
+        
+        //View Elements Preparation
+        //nameLabel.text = "Name: " + hero!.name
+        nameLabel.text =  hero!.name
+        heroImageView.sd_setImage(with: URL(string: hero!.image), placeholderImage: UIImage(named: hero!.name))
         if hero?.city == "-"{
             cityLabel.text = "Place of Birth: Unknown"
         } else{
@@ -50,18 +44,8 @@ class DetailsViewController: UIViewController {
         }
         alignmentLabel.text = "Alignment: " + hero!.alignment
         companyLabel.text = "Company: " + hero!.publisher
-        DispatchQueue.global().async { [weak self] in
-            if let imageUrl = URL(string: self?.hero?.image ?? ""){
-                if let data = try? Data(contentsOf: imageUrl) {
-                            if let image = UIImage(data: data) {
-                                DispatchQueue.main.async {
-                                    self?.heroImageView.image = image
-                                }
-                            }
-                        }
-                    }
-            }
-            
+
+        //Filtering non-null hero attributes
         let powerStatsData = [hero?.powerStats?.intelligence, hero?.powerStats?.strength, hero?.powerStats?.speed, hero?.powerStats?.durability, hero?.powerStats?.power, hero?.powerStats?.combat]
         var aux = 0
         for (index, powerStat) in powerStatsData.enumerated(){
@@ -71,19 +55,15 @@ class DetailsViewController: UIViewController {
                 aux += 1
             } else{
                 powerStats.append(powerStat!)
-                //print(powerStat!)
             }
         }
-        print(powerStatsLabel.count)
         if powerStatsLabel.isEmpty {
             titlePowerStatsLabel.text = "No powerstats registered for this character"
         }
-        //print(powerStats.count)
     }
-
-
 }
 
+//MARK: - Collection View Data Source
 
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -93,12 +73,27 @@ extension DetailsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"powerStatsCell" , for: indexPath) as! DetailsCollectionViewCell
+        switch powerStatsLabel[indexPath.row]{
+        case "Intelligence: ":
+            cell.attributeImageView.image = UIImage(named: "intelligence")
+        case "Strength: ":
+            cell.attributeImageView.image = UIImage(named: "strength")
+        case "Speed: ":
+            cell.attributeImageView.image = UIImage(named: "speed")
+        case "Durability: ":
+            cell.attributeImageView.image = UIImage(named: "durability")
+        case "Power: ":
+            cell.attributeImageView.image = UIImage(named: "power")
+        case "Combat: ":
+            cell.attributeImageView.image = UIImage(named: "combat")
+        default:
+            cell.attributeImageView.image = UIImage(named: "default")
+        }
         cell.attributeLabel.text = powerStatsLabel[indexPath.row]
         cell.valueLabel.text = powerStats[indexPath.row]
-        //cell.heroImageView.image = UIImage(contentsOfFile: "inteligence.png")
-        //print(powerStatsLabel[indexPath.row])
         
         return cell
     }
     
 }
+

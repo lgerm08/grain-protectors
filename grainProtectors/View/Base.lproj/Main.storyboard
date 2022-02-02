@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fzM-FC-Akv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Protetores dos Grãos-->
+        <!--Avengers Grains-->
         <scene sceneID="7Ka-aT-5Et">
             <objects>
                 <viewController id="ole-Fo-bYy" customClass="HeroViewController" customModule="grainProtectors" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,23 +24,36 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="ZNu-uJ-ZRO">
-                                                <rect key="frame" x="0.0" y="0.0" width="336.5" height="51"/>
-                                                <textInputTraits key="textInputTraits" smartDashesType="yes" textContentType="name"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="298" height="51"/>
+                                                <color key="backgroundColor" red="0.098625984350000001" green="0.62480271460000003" blue="0.1235272001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" smartDashesType="yes" textContentType="name"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="ole-Fo-bYy" id="KDT-bS-a6j"/>
                                                 </connections>
                                             </searchBar>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64j-yc-8MF">
-                                                <rect key="frame" x="336.5" y="0.0" width="77.5" height="51"/>
+                                                <rect key="frame" x="298" y="0.0" width="116" height="51"/>
+                                                <color key="backgroundColor" red="0.098625984345995954" green="0.62480271464646464" blue="0.1235272000966333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Random"/>
+                                                <buttonConfiguration key="configuration" style="plain" titleAlignment="center">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Random Hero">
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="searchButtonPressed:" destination="ole-Fo-bYy" eventType="touchUpInside" id="WTw-wH-L9d"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RAu-ib-cpz">
+                                    <tableView clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RAu-ib-cpz">
                                         <rect key="frame" x="0.0" y="51" width="414" height="757"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
@@ -55,7 +69,7 @@
                             <constraint firstAttribute="bottom" secondItem="JG2-dk-wJM" secondAttribute="bottom" id="nCf-gF-GXu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Protetores dos Grãos" id="Say-ui-Ih8"/>
+                    <navigationItem key="navigationItem" title="Avengers Grains" id="Say-ui-Ih8"/>
                     <connections>
                         <outlet property="resultsTableView" destination="RAu-ib-cpz" id="aL2-i1-4Al"/>
                         <outlet property="searchBar" destination="ZNu-uJ-ZRO" id="oYB-2O-nqa"/>
@@ -82,28 +96,28 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N8I-Dr-N5M">
-                                <rect key="frame" x="0.0" y="338.5" width="414" height="106"/>
+                                <rect key="frame" x="0.0" y="338.5" width="414" height="115.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OM-2u-HE2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="city" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLv-mY-fgU">
-                                        <rect key="frame" x="0.0" y="28.5" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="38" width="414" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alignment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAf-Jj-IFP">
-                                        <rect key="frame" x="0.0" y="57" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="66.5" width="414" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="company" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey2-wV-NqB">
-                                        <rect key="frame" x="0.0" y="85.5" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="95" width="414" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -111,19 +125,19 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-ip-UPW">
-                                <rect key="frame" x="161.5" y="495.5" width="91" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="157.5" y="464" width="99" height="20.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IZF-Of-7Ep">
-                                <rect key="frame" x="32" y="537" width="350" height="282"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IZF-Of-7Ep">
+                                <rect key="frame" x="32" y="505.5" width="350" height="282"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="282" id="tmq-hQ-HzI"/>
                                     <constraint firstAttribute="width" constant="350" id="xQa-3Z-CdP"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8I7-f9-8iK">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8I7-f9-8iK">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -141,7 +155,7 @@
                             <constraint firstItem="IZF-Of-7Ep" firstAttribute="top" secondItem="lc0-ip-UPW" secondAttribute="bottom" constant="21" id="Ytk-Oj-Nod"/>
                             <constraint firstItem="lc0-ip-UPW" firstAttribute="centerX" secondItem="5xn-yC-8I1" secondAttribute="centerX" id="e7Z-5T-Opf"/>
                             <constraint firstItem="Bri-14-ODY" firstAttribute="trailing" secondItem="N8I-Dr-N5M" secondAttribute="trailing" id="fgi-Eo-C5m"/>
-                            <constraint firstItem="lc0-ip-UPW" firstAttribute="top" secondItem="N8I-Dr-N5M" secondAttribute="bottom" constant="51" id="oYf-nU-tge"/>
+                            <constraint firstItem="lc0-ip-UPW" firstAttribute="top" secondItem="N8I-Dr-N5M" secondAttribute="bottom" constant="10" id="oYf-nU-tge"/>
                             <constraint firstItem="N8I-Dr-N5M" firstAttribute="leading" secondItem="Bri-14-ODY" secondAttribute="leading" id="q7S-Hm-4NS"/>
                             <constraint firstItem="FQS-UG-j48" firstAttribute="centerX" secondItem="5xn-yC-8I1" secondAttribute="centerX" id="uyc-Lz-O9U"/>
                         </constraints>
