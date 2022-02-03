@@ -91,7 +91,11 @@ extension DetailsViewController: UICollectionViewDataSource {
         }
         cell.attributeLabel.text = powerStatsLabel[indexPath.row]
         cell.valueLabel.text = powerStats[indexPath.row]
-        
+        cell.attributeImageView.layer.borderWidth = 1.0
+        cell.attributeImageView.layer.masksToBounds = false
+        cell.attributeImageView.layer.cornerRadius = 0.05*cell.attributeImageView.image!.size.width/2
+        cell.attributeImageView.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        cell.attributeImageView.clipsToBounds = true
         return cell
     }
     

@@ -13,6 +13,7 @@ class HeroViewController: UIViewController {
     
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var randomButton: UIButton!
     
     var heroManager = HeroManager()
     var heroSearchManager = HeroSearchManager()
@@ -22,7 +23,8 @@ class HeroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        randomButton.layer.cornerRadius = 0.5 * randomButton.bounds.size.width
+        randomButton.clipsToBounds = true
         heroSearchManager.delegate = self
         heroManager.delegate = self
         resultsTableView.dataSource = self
@@ -140,6 +142,12 @@ extension HeroViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeroCell", for: indexPath) as! HeroCell
         cell.heroImageView.sd_setImage(with: URL(string: herosResultsList[indexPath.row].image), placeholderImage: UIImage(named: herosResultsList[indexPath.row].name))
+        cell.heroImageView.layer.borderWidth = 1.0
+        cell.heroImageView.layer.masksToBounds = false
+        cell.heroImageView.layer.cornerRadius = 20
+        cell.heroImageView.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        cell.heroImageView.clipsToBounds = true
+        
         cell.fullNameLabel.text = "Name: " + herosResultsList[indexPath.row].name
         cell.cityLabel.text = "From: " + herosResultsList[indexPath.row].city
         cell.companyLabel.text = "Company: " + herosResultsList[indexPath.row].publisher
@@ -161,6 +169,5 @@ extension HeroViewController: UITableViewDelegate{
             }
     }
 }
-
 
 

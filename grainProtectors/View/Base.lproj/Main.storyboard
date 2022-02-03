@@ -13,7 +13,7 @@
         <scene sceneID="7Ka-aT-5Et">
             <objects>
                 <viewController id="ole-Fo-bYy" customClass="HeroViewController" customModule="grainProtectors" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VBi-zd-BCi">
+                    <view key="view" contentMode="scaleAspectFill" id="VBi-zd-BCi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -21,28 +21,32 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsT-pR-cvq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="ZNu-uJ-ZRO">
-                                                <rect key="frame" x="0.0" y="0.0" width="298" height="51"/>
-                                                <color key="backgroundColor" red="0.098625984350000001" green="0.62480271460000003" blue="0.1235272001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="80"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" smartDashesType="yes" textContentType="name"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="ole-Fo-bYy" id="KDT-bS-a6j"/>
                                                 </connections>
                                             </searchBar>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64j-yc-8MF">
-                                                <rect key="frame" x="298" y="0.0" width="116" height="51"/>
-                                                <color key="backgroundColor" red="0.098625984345995954" green="0.62480271464646464" blue="0.1235272000966333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="334" y="0.0" width="80" height="80"/>
+                                                <color key="backgroundColor" red="0.098039215686274508" green="0.62352941176470589" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="B9J-Kw-Db7"/>
+                                                    <constraint firstAttribute="width" constant="80" id="Xd5-If-OXR"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.098625984350000001" green="0.62480271460000003" blue="0.1235272001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" titleAlignment="center">
+                                                    <backgroundConfiguration key="background" cornerRadius="0.0" image="random" imageContentMode="scaleAspectFit"/>
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="Random Hero">
+                                                        <fragment content=".">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                <font key="NSFont" metaFont="toolTip"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -54,7 +58,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RAu-ib-cpz">
-                                        <rect key="frame" x="0.0" y="51" width="414" height="757"/>
+                                        <rect key="frame" x="0.0" y="80" width="414" height="728"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -71,6 +75,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Avengers Grains" id="Say-ui-Ih8"/>
                     <connections>
+                        <outlet property="randomButton" destination="64j-yc-8MF" id="Api-EY-3f0"/>
                         <outlet property="resultsTableView" destination="RAu-ib-cpz" id="aL2-i1-4Al"/>
                         <outlet property="searchBar" destination="ZNu-uJ-ZRO" id="oYB-2O-nqa"/>
                         <segue destination="mXs-BS-Kq7" kind="show" identifier="goToHero" id="twV-jZ-BsY"/>
@@ -211,6 +216,7 @@
     </scenes>
     <resources>
         <image name="blank-profile" width="1280" height="1280"/>
+        <image name="random" width="500" height="500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
