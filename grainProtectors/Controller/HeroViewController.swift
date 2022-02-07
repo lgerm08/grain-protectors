@@ -33,17 +33,24 @@ class HeroViewController: UIViewController {
         searchBar.delegate = self
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
 //        self.view.addGestureRecognizer(tapGesture)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+            //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
-    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
-    }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         let randomId = Int.random(in: 1...100)
         heroManager.fetchHeroById(heroId: String(randomId))
     }
-    
+
     
 }
 
@@ -106,10 +113,10 @@ extension HeroViewController: UISearchBarDelegate{
         if searchBar.text?.count == 0 {
             //loadItems()
             herosResultsList = []
-            searchBar.resignFirstResponder()
+            //searchBar.resignFirstResponder()
             resultsTableView.reloadData()
 
-        }else if searchBar.text!.count >= 3{
+        }else {
             heroSearchManager.findHero(searchBar.text!.lowercased())
         }
     }
@@ -119,7 +126,7 @@ extension HeroViewController: UISearchBarDelegate{
         if searchBar.text?.count == 0 {
             //loadItems()
             herosResultsList = []
-            searchBar.resignFirstResponder()
+            //searchBar.resignFirstResponder()
             resultsTableView.reloadData()
 
         }else if searchBar.text!.count >= 3{
@@ -161,6 +168,7 @@ extension HeroViewController: UITableViewDataSource {
 
 extension HeroViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select row")
         tableView.deselectRow(at: indexPath, animated: true)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             if let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController{
