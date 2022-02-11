@@ -43,17 +43,17 @@ struct Biography : Codable  {
     }
 }
 
-struct Appearance : Codable {
-    
-}
-
-struct Work : Codable {
-    
-}
-
-struct Connections : Codable {
-    
-}
+//struct Appearance : Codable {
+//    
+//}
+//
+//struct Work : Codable {
+//    
+//}
+//
+//struct Connections : Codable {
+//    
+//}
 
 struct Image : Codable {
     let url : String

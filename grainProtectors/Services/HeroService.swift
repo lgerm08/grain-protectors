@@ -1,7 +1,7 @@
 import Foundation
 
-protocol HeroManagerDelegate{
-    func didUpdateButton(_ HeroManager: HeroManager, hero: HeroModel)
+protocol HeroServiceDelegate{
+    func didPressedRandom(_ HeroService: HeroService, hero: HeroModel)
     func failedWithError(error: Error)
 }
 
@@ -9,12 +9,12 @@ protocol HeroManagerDelegate{
 protocol LoadHeroData{
     func heroSelected(_ heroId: HeroModel )
 }
-struct HeroManager {
+struct HeroService {
     
     let heroIdURL = "https://superheroapi.com/api/6818915951517062"
     let findHeroURL = "https://superheroapi.com/api/6818915951517062/search"
     
-    var delegate: HeroManagerDelegate?
+    var delegate: HeroServiceDelegate?
     
     func fetchHeroById(heroId: String){
         let urlString = "\(heroIdURL)/\(heroId)"
@@ -39,7 +39,7 @@ struct HeroManager {
                 if let safeData = data {
                     if let hero = parseJSON(safeData){
                         print("safe data from json checked")
-                        self.delegate?.didUpdateButton(self, hero: hero)
+                        self.delegate?.didPressedRandom(self, hero: hero)
                     }
                 }
             }

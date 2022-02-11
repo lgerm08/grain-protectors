@@ -26,7 +26,6 @@ class DetailsViewController: UIViewController {
     var herosResultsList: [HeroModel] = []
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Collection View Preparation

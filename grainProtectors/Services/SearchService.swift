@@ -1,11 +1,11 @@
 import Foundation
 
 protocol HeroSearchDelegate{
-    func didUpdateSearch(_ HeroManager: HeroSearchManager, heros: HeroSearchDataModel)
+    func didUpdateSearch(_ HeroManager: SearchService, heros: HeroSearchDataModel)
     func didFailWithError(error: Error)
 }
 
-struct HeroSearchManager {
+struct SearchService {
     
     let findHeroURL = "https://superheroapi.com/api/6818915951517062/search"
     

@@ -12,7 +12,7 @@
         <!--Avengers Grains-->
         <scene sceneID="7Ka-aT-5Et">
             <objects>
-                <viewController id="ole-Fo-bYy" customClass="HeroViewController" customModule="grainProtectors" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeroViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ole-Fo-bYy" customClass="HeroViewController" customModule="grainProtectors" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="VBi-zd-BCi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                                                         <fragment content=".">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" metaFont="toolTip"/>
+                                                                <font key="NSFont" usesAppearanceFont="YES"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
