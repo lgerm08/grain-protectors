@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="3557" y="55"/>
         </scene>
-        <!--Details View Controller-->
+        <!--View Controller-->
         <scene sceneID="6ib-fl-mAn">
             <objects>
-                <viewController storyboardIdentifier="DetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mXs-BS-Kq7" customClass="DetailsViewController" customModule="grainProtectors" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="mXs-BS-Kq7" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5xn-yC-8I1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

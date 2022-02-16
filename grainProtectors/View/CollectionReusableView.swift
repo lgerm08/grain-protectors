@@ -8,19 +8,41 @@
 import UIKit
 
 class CollectionReusableView: UICollectionReusableView {
-
-
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var companyLabel: UILabel!
+    var heroImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "blank-profile")
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    var nameLabel: UILabel = {
+        let labelView = UILabel()
+        labelView.text = ""
+        labelView.textAlignment = .center
+        return labelView
+    }()
+    static let identifier = "CollectionReusableView"
     
-    @IBOutlet weak var heroImage: UIImageView!
-    @IBOutlet weak var powerStatsLabel: UILabel!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addSubviews(){
+//        contentView.addSubview(<#T##UIView#>)
+        addSubview(heroImage)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //addSubviews()
     }
     
+       
 }

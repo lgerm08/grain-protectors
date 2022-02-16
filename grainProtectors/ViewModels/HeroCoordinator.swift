@@ -10,10 +10,14 @@ import UIKit
 class HeroCoordinator {
     
     func goToDetails(hero: HeroModel, currentViewController: HeroViewController){
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            if let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController{
-                viewController.hero = hero
-                currentViewController.present(viewController, animated: true, completion: nil)
-            }
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            if let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController{
+//                viewController.hero = hero
+//                currentViewController.present(viewController, animated: true, completion: nil)
+            //}
+        let details = DetailsViewController()
+        details.hero = hero
+//        currentViewController.window?.rootViewController = UINavigationController(rootViewController: details)
+        currentViewController.present(details, animated: true, completion: nil)
     }
 }

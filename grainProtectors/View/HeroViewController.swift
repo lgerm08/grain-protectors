@@ -10,9 +10,35 @@ import SDWebImage
 
 class HeroViewController: UIViewController {
     
-    @IBOutlet weak var resultsTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var randomButton: UIButton!
+    private lazy var randomButton: UIButton = {
+        let button = UIButton()
+        let origImage = UIImage(named: "random")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        button.setImage(tintedImage, for: .normal)
+        button.tintColor = .green
+        button.addTarget(self, action: #selector(randomPressed), for: .touchUpInside)
+        return button
+    }()
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.placeholder = "Find an Avenger Grain"
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        return searchBar
+    }()
+    private lazy var heroResultsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.showsVerticalScrollIndicator = false
+        tableView.delegate = self
+        tableView.backgroundColor = .white
+        tableView.dataSource = self
+        tableView.separatorStyle = .singleLine
+        return tableView
+    }()
     
     var herosResultsList: [HeroModel] = []
     var heroDetails : HeroModel?
@@ -22,32 +48,47 @@ class HeroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        randomButton.layer.cornerRadius = 0.5 * randomButton.bounds.size.width
-        randomButton.clipsToBounds = true
+        
         viewModel.heroProtocol = self
         
-        resultsTableView.dataSource = self
-        resultsTableView.delegate = self
-        resultsTableView.register(UINib(nibName: "HeroCell", bundle: nil), forCellReuseIdentifier: "HeroCell")
+        heroResultsTableView.dataSource = self
+        heroResultsTableView.delegate = self
+        heroResultsTableView.register(HeroCell.self, forCellReuseIdentifier: HeroCell.identifier)
         searchBar.delegate = self
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-
+        
         tap.cancelsTouchesInView = false
-
+        
         view.addGestureRecognizer(tap)
+        
+        addSubviews()
+        
     }
-    
+    func setupConstraints() {
+        randomButton.anchor(top: view.topAnchor, right: view.rightAnchor,  topConstant: 50,   rightConstant: 10, widthConstant: 80, heightConstant: 80)
+        randomButton.layer.cornerRadius = 40
+        randomButton.setImage(UIImage(named: "random"), for: .normal)
+        randomButton.clipsToBounds = true
+        searchBar.anchor(top: view.topAnchor, left: view.leftAnchor, topConstant: 70, leftConstant: 10, widthConstant: view.frame.width - 105, heightConstant: 40)
+        heroResultsTableView.anchor(top: randomButton.bottomAnchor, bottom: view.bottomAnchor, centerX: view.centerXAnchor, topConstant: 10, bottomConstant: 10, widthConstant: view.frame.size.width, heightConstant: view.frame.self.height)
+    }
+    func addSubviews(){
+        view.backgroundColor = .white
+        view.addSubview(randomButton)
+        view.addSubview(searchBar)
+        view.addSubview(heroResultsTableView)
+        setupConstraints()
+    }
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    
-    @IBAction func searchButtonPressed(_ sender: UIButton) {
+    @objc func randomPressed() {
         let randomId = Int.random(in: 1...100)
         viewModel.randomHero(id: randomId)
     }
+    
 
     
 }
@@ -80,7 +121,7 @@ extension HeroViewController: HeroViewModelProtocol{
             self.herosResultsList = self.herosResultsList.sorted{
                 $0.city < $1.city
             }
-            self.resultsTableView.reloadData()
+            self.heroResultsTableView.reloadData()
         }
     }
     
@@ -97,7 +138,7 @@ extension HeroViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text?.count == 0 {
             herosResultsList = []
-            resultsTableView.reloadData()
+            heroResultsTableView.reloadData()
 
         }else {
             viewModel.searchHero(heroName: searchBar.text!.lowercased())
@@ -107,7 +148,7 @@ extension HeroViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             herosResultsList = []
-            resultsTableView.reloadData()
+            heroResultsTableView.reloadData()
 
         }else if searchBar.text!.count >= 3{
             viewModel.searchHero(heroName: searchBar.text!.lowercased())
@@ -123,23 +164,22 @@ extension HeroViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 144
+        return 150
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeroCell", for: indexPath) as! HeroCell
-        cell.heroImageView.sd_setImage(with: URL(string: herosResultsList[indexPath.row].image), placeholderImage: UIImage(named: herosResultsList[indexPath.row].name))
-        cell.heroImageView.layer.borderWidth = 1.0
-        cell.heroImageView.layer.masksToBounds = false
-        cell.heroImageView.layer.cornerRadius = 20
-        cell.heroImageView.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
-        cell.heroImageView.clipsToBounds = true
-        
-        cell.fullNameLabel.text = "Name: " + herosResultsList[indexPath.row].name
+        cell.nameLabel.text = "Name: " + herosResultsList[indexPath.row].name
+        cell.heroImage.sd_setImage(with: URL(string: herosResultsList[indexPath.row].image), placeholderImage: UIImage(named: herosResultsList[indexPath.row].name))
+        cell.heroImage.layer.masksToBounds = false
+        cell.heroImage.layer.cornerRadius = 0.1*130
+        cell.heroImage.clipsToBounds = true
+
+        cell.nameLabel.text = "Name: " + herosResultsList[indexPath.row].name
         cell.cityLabel.text = "From: " + herosResultsList[indexPath.row].city
         cell.companyLabel.text = "Company: " + herosResultsList[indexPath.row].publisher
         //cell.textLabel?.text = herosResultsList[indexPath.row].name
-        
+        cell.addSubviews()
         return cell
     }
 }
